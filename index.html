@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amaraith Reserve - Sint Maarten</title>
+    <!-- Use a Google Font with a serif and sans-serif for the correct feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General resets */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+
+        h1, h2, h3, .brand-name {
+            font-family: 'Playfair Display', serif;
+            color: #CBA266; /* Muted Gold from Logo */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Container for standard width content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Navigation */
+        .header-nav {
+            background-color: #000;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .header-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .header-nav li a {
+            color: #CBA266;
+            font-weight: 300;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-nav li a:hover {
+            opacity: 0.8;
+        }
+
+        .header-nav .try-options {
+            border: 1px solid #CBA266;
+            padding: 10px 20px;
+            color: #CBA266;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .header-nav .try-options:hover {
+            background-color: #CBA266;
+            color: #000;
+        }
+
+        /* Hero / Video Section */
+        .hero-video {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), #000;
+        }
+
+        .hero-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-video::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+            pointer-events: none;
+        }
+
+        /* Option Selector Overlay */
+        .option-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 350px;
+            background-color: rgba(0, 0, 0, 0.95);
+            border: 1px solid #CBA266;
+            padding: 25px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .option-selector h3 {
+            margin: 0 0 20px;
+            color: #CBA266;
+            text-transform: uppercase;
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .option-group {
+            margin-bottom: 25px;
+        }
+
+        .option-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #CBA266;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .option-button {
+            border: 1px solid #444;
+            padding: 10px 15px;
+            color: #ddd;
+            background: none;
+            cursor: pointer;
+            text-transform: capitalize;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .option-button:hover {
+            border-color: #CBA266;
+            color: #CBA266;
+        }
+
+        .option-button.active {
+            background-color: #CBA266;
+            color: #000;
+            border-color: #CBA266;
+        }
+
+        .group-size-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .group-size-icons svg {
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            color: #CBA266;
+        }
+
+        .group-size-icons svg:hover {
+            opacity: 0.8;
+        }
+
+        /* Central Logo Section */
+        .central-logo {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .logo-details {
+            margin: 0 auto;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .logo-image {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+
+        .logo-details h1 {
+            font-size: 3.5em;
+            margin: 20px 0 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo-details h2 {
+            font-size: 1.3em;
+            color: #CBA266;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo-details h2.tagline {
+            font-size: 0.9em;
+            color: #00778C;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* Villa Cards Section */
+        .villa-section {
+            padding: 60px 0;
+            background-color: #000;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .villa-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 0;
+        }
+
+        .villa-card {
+            background-color: #111;
+            border: 1px solid #222;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .villa-card:hover {
+            border-color: #CBA266;
+            transform: translateY(-5px);
+        }
+
+        .villa-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .villa-info {
+            padding: 25px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .villa-info h3 {
+            font-size: 1.6em;
+            margin: 0 0 12px;
+        }
+
+        .villa-info p {
+            color: #00778C;
+            margin: 0 0 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            flex-grow: 1;
+        }
+
+        .villa-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .action-button {
+            border: 1px solid #CBA266;
+            color: #CBA266;
+            padding: 12px 18px;
+            background: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            flex: 1;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .action-button:hover {
+            background-color: #CBA266;
+            color: #000;
+        }
+
+        .action-button.primary {
+            background-color: #CBA266;
+            color: #000;
+        }
+
+        .action-button.primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Bottom Footer / Map Section */
+        .footer-map-section {
+            background-color: #111;
+            padding: 60px 0;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 40px;
+        }
+
+        /* Brand Column */
+        .footer-brand {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .footer-brand img {
+            width: 100%;
+            max-width: 150px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-brand h1 {
+            font-size: 1.8em;
+            margin: 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand h2 {
+            font-size: 0.95em;
+            color: #CBA266;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand h2.location {
+            color: #00778C;
+            font-size: 0.85em;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 1em;
+            color: #fff;
+            margin: 0 0 12px;
+        }
+
+        .footer-brand a {
+            color: #CBA266;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-brand a:hover {
+            opacity: 0.8;
+        }
+
+        /* Map Column */
+        .map-section {
+            position: relative;
+            background: linear-gradient(135deg, #1a3a3a, #0d2626);
+            color: #CBA266;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 1px solid #222;
+            border-radius: 5px;
+            min-height: 300px;
+        }
+
+        .map-overlay {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            border: 1px solid #CBA266;
+        }
+
+        .map-overlay p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .map-controls {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .map-controls button {
+            border: 1px solid #CBA266;
+            color: #CBA266;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+
+        .map-controls button:hover {
+            background-color: #CBA266;
+            color: #000;
+        }
+
+        /* Social Media Column */
+        .social-media-feed {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 25px;
+            border-radius: 5px;
+            border: 1px solid #222;
+        }
+
+        .feed-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .feed-header svg {
+            width: 45px;
+            height: 45px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .feed-header-text {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .feed-header h4 {
+            margin: 0;
+            color: #CBA266;
+            font-size: 1.1em;
+        }
+
+        .feed-header p {
+            margin: 5px 0 0;
+            font-size: 0.85em;
+            color: #888;
+        }
+
+        .feed-post p {
+            margin: 0 0 12px;
+            color: #ddd;
+            line-height: 1.6;
+        }
+
+        .feed-post a {
+            color: #00778C;
+            transition: opacity 0.3s ease;
+        }
+
+        .feed-post a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-nav ul {
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .option-selector {
+                width: 90%;
+                left: 5%;
+                right: 5%;
+            }
+
+            .logo-details h1 {
+                font-size: 2.5em;
+            }
+
+            .villa-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header-nav">
+        <nav class="container">
+            <ul>
+                <li><a href="#reserve">The Reserve</a></li>
+                <li><a href="#villas">Villas</a></li>
+                <li><a href="#experiences">Experiences</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact" class="try-options">Get in Touch</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Hero Video Section with Overlay Selector -->
+        <section class="hero-video">
+            <video autoplay loop muted playsinline>
+                <source src="https://videos.pexels.com/video-files/3571200/3571200-hd_1920_1080_25fps.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Floating Option Selector -->
+            <aside class="option-selector">
+                <h3>✨ Customize</h3>
+                <div class="option-group">
+                    <label>Villa Style</label>
+                    <div class="option-buttons">
+                        <button class="option-button active">Beachfront</button>
+                        <button class="option-button">Hillside</button>
+                        <button class="option-button">Private</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label>Experience Type</label>
+                    <div class="option-buttons">
+                        <button class="option-button active">Romantic</button>
+                        <button class="option-button">Family</button>
+                        <button class="option-button">Adventure</button>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label>Group Size</label>
+                    <div class="group-size-icons">
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+                        <svg width="35" height="35" viewBox="0 0 24 24" fill="currentColor"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path></svg>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Central Logo Section -->
+        <section class="central-logo">
+            <div class="container">
+                <div class="logo-details">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 600'%3E%3Crect width='500' height='600' fill='%23000'/%3E%3C/svg%3E" alt="Amaraith Reserve Logo" class="logo-image" style="max-width: 350px;">
+                    <h1>AMARAITH</h1>
+                    <h2>RESERVE</h2>
+                    <h2 class="tagline">SINT MAARTEN</h2>
+                    <p style="color: #CBA266; font-size: 1.1em; letter-spacing: 2px; font-weight: 300;">
+                        EXCLUSIVE VILLAS. TIMELESS EXPERIENCES.<br>
+                        <span style="color: #00778C;">MAXIMUM BOOKINGS.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Villa Grid Section -->
+        <section id="villas" class="villa-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Villas</h2>
+                </div>
+                <div class="villa-grid">
+                    <!-- Villa Card 1 -->
+                    <article class="villa-card">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop" alt="Villa Azur - Beachfront">
+                        <div class="villa-info">
+                            <h3>Villa Azur</h3>
+                            <p>Beachfront Paradise</p>
+                            <div class="villa-actions">
+                                <button class="action-button primary">View Gallery</button>
+                                <button class="action-button">Availability</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Villa Card 2 -->
+                    <article class="villa-card">
+                        <img src="https://images.unsplash.com/photo-1512207736139-c1aa39bac15d?w=400&h=300&fit=crop" alt="Serenity Hill - Hillside">
+                        <div class="villa-info">
+                            <h3>Serenity Hill</h3>
+                            <p>Hillside Retreat</p>
+                            <div class="villa-actions">
+                                <button class="action-button primary">View Gallery</button>
+                                <button class="action-button">Availability</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Villa Card 3 -->
+                    <article class="villa-card">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop" alt="Pelican Point - Romantic">
+                        <div class="villa-info">
+                            <h3>Pelican Point</h3>
+                            <p>Romantic Getaway</p>
+                            <div class="villa-actions">
+                                <button class="action-button primary">View Gallery</button>
+                                <button class="action-button">Availability</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Villa Card 4 -->
+                    <article class="villa-card">
+                        <img src="https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?w=400&h=300&fit=crop" alt="Oceanus Estate - Large Group">
+                        <div class="villa-info">
+                            <h3>Oceanus Estate</h3>
+                            <p>Grand Escape</p>
+                            <div class="villa-actions">
+                                <button class="action-button primary">View Gallery</button>
+                                <button class="action-button">Availability</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Map and Social Feed Section -->
+        <section id="contact" class="footer-map-section">
+            <div class="container footer-grid">
+                <!-- Column 1: Brand & Contact -->
+                <div class="footer-brand">
+                    <h1>AMARAITH</h1>
+                    <h2>RESERVE</h2>
+                    <h2 class="location">SINT MAARTEN</h2>
+                    <p>📞 +1 (387) 336-3300</p>
+                    <a href="mailto:info@amaraith.com">📧 info@amaraith.com</a>
+                    <p style="margin-top: 20px; font-size: 0.95em; color: #888;">
+                        Discover luxury villa rentals in Sint Maarten with exclusive experiences and timeless moments.
+                    </p>
+                </div>
+
+                <!-- Column 2: Map -->
+                <div class="map-section">
+                    <div class="map-overlay">
+                        <p style="color: #CBA266; font-weight: bold;">Sint Maarten</p>
+                        <p>Caribbean Paradise</p>
+                        <p style="font-size: 0.8em; color: #888;">📍 18.0735° N, 63.0895° W</p>
+                    </div>
+                    <div class="map-controls">
+                        <button>🗺️ Map</button>
+                        <button>🛰️ Satellite</button>
+                    </div>
+                </div>
+
+                <!-- Column 3: Social Media Feed -->
+                <div class="social-media-feed">
+                    <div class="feed-header">
+                        <svg viewBox="0 0 24 24" fill="#CBA266"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        <div class="feed-header-text">
+                            <h4>Amaraith Reserve</h4>
+                            <p>@AmaraithReserve</p>
+                        </div>
+                    </div>
+                    <div class="feed-post">
+                        <p>✨ Escape to paradise. Experience luxury. Create memories. Your perfect Sint Maarten villa awaits.</p>
+                        <a href="#">#AmaraithReserve #SintMaarten #LuxuryVillas</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
